@@ -17,7 +17,14 @@ class DataRepository(
             .map { it.toElementOfPokeList() }
     }
 
-    override suspend fun getPokemonByName(name: String):Pokemon {
-        return retrofitRepository.getPokemonByName(name = name)
+    override suspend fun getPokemonByName(name: String):ElementOfPokeList {
+        return retrofitRepository.getPokemonByName(name = name).toElementOfPokeList()
     }
+}
+
+fun Pokemon.toElementOfPokeList():ElementOfPokeList{
+    return ElementOfPokeList(
+        url = sprites.other.official_artwork.front_default,
+        name = forms[0].name
+    )
 }

@@ -1,6 +1,7 @@
 package com.example.pokex.di
 
 import com.example.pokex.domain.repository.UserRepository
+import com.example.pokex.domain.use_case.UseGetPokemonByName
 import com.example.pokex.domain.use_case.UseGetPokemonList
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,10 @@ class DomainModule {
         )
     }
 
+    @Provides
+    fun provideUseGetPokemonByName(userRepository: UserRepository):UseGetPokemonByName{
+        return UseGetPokemonByName(
+            userRepository = userRepository
+        )
+    }
 }
