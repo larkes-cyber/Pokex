@@ -14,7 +14,7 @@ class DomainModule {
         return UseGetPokemonList(
             userRepository = userRepository
         )
-    }
+    }//hjohhhh[ihhh[ph
 
     @Provides
     fun provideUseGetPokemonByName(userRepository: UserRepository):UseGetPokemonByName{
