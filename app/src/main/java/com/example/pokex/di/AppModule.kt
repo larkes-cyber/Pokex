@@ -1,6 +1,7 @@
 package com.example.pokex.di
 
 import android.content.Context
+import com.example.pokex.domain.use_case.UseGetPokemonByName
 import com.example.pokex.domain.use_case.UseGetPokemonList
 import com.example.pokex.ui.view_model.main_screen_view_model.MainScreenViewModuleFactory
 import dagger.Module
@@ -16,10 +17,12 @@ class AppModule(val context: Context) {
 
     @Provides
     fun provideMainScreenViewModelFactory(
-         useGetPokemonList: UseGetPokemonList
+         useGetPokemonList: UseGetPokemonList,
+         useGetPokemonByName: UseGetPokemonByName
     ):MainScreenViewModuleFactory{
         return MainScreenViewModuleFactory(
-            useGetPokemonList = useGetPokemonList
+            useGetPokemonList = useGetPokemonList,
+            useGetPokemonByName = useGetPokemonByName
         )
     }
 
