@@ -6,7 +6,7 @@ import com.example.pokex.domain.model.ElementOfPokeList
 
 interface UserRepository {
 
-    suspend fun getPokemonList(offset:Int,limit:Int):List<ElementOfPokeList>
+    suspend fun getPokemonList(offset:Int,limit:Int):MutableList<ElementOfPokeList>
     suspend fun getPokemonByName(name:String):ElementOfPokeList
 
 }

@@ -11,10 +11,13 @@ class DataRepository(
     val retrofitRepository: RetrofitRepository
 ):UserRepository {
 
-    override suspend fun getPokemonList(offset: Int, limit: Int):List<ElementOfPokeList> {
-        return  retrofitRepository.getPokemonList(offset = offset,limit = limit)
+    override suspend fun getPokemonList(offset: Int, limit: Int):MutableList<ElementOfPokeList> {
+        val resp =  retrofitRepository.getPokemonList(offset = offset,limit = limit)
             .results
-            .map { it.toElementOfPokeList() }
+
+        val mutableList:MutableList<ElementOfPokeList> = resp.map { it.toElementOfPokeList()  } as MutableList<ElementOfPokeList>
+
+        return mutableList
     }
 
     override suspend fun getPokemonByName(name: String):ElementOfPokeList {
@@ -24,7 +27,7 @@ class DataRepository(
 
 fun Pokemon.toElementOfPokeList():ElementOfPokeList{
     return ElementOfPokeList(
-        url = sprites.other.official_artwork.front_default,
+        url = "sprites.other.official_artwork.front_default",
         name = forms[0].name
     )
 }

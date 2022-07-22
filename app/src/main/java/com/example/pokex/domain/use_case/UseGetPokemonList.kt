@@ -9,13 +9,13 @@ import java.lang.Exception
 
 class UseGetPokemonList(val userRepository: UserRepository) {
 
-    operator fun invoke(offset:Int,limit:Int): Flow<Resource<List<ElementOfPokeList>>> = flow {
+    operator fun invoke(offset:Int,limit:Int): Flow<Resource<MutableList<ElementOfPokeList>>> = flow {
         try {
-            emit(Resource.Loading<List<ElementOfPokeList>>())
+            emit(Resource.Loading<MutableList<ElementOfPokeList>>())
             val coin = userRepository.getPokemonList(offset,limit)
-            emit(Resource.Success<List<ElementOfPokeList>>(coin))
+            emit(Resource.Success<MutableList<ElementOfPokeList>>(coin))
         } catch(e: Exception) {
-            emit(Resource.Error<List<ElementOfPokeList>>(e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error<MutableList<ElementOfPokeList>>(e.localizedMessage ?: "An unexpected error occured"))
         }
     }
 
